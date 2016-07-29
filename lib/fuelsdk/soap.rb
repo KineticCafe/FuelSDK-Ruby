@@ -145,7 +145,7 @@ module FuelSDK
         log: debug,
         open_timeout:180,
         read_timeout: 180,
-        proxy: "https://#{ENV['PROXY_HOST']}:ENV['PROXY_PORT']"
+        proxy: "https://#{ENV['PROXY_HOST']}:#{ENV['PROXY_PORT']}"
       )
     end
 
