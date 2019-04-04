@@ -1,19 +1,19 @@
 require 'spec_helper.rb'
 require 'objects_helper_spec.rb'
 
-describe FuelSDK::Objects::Base do
+describe MarketingCloudSDK::Objects::Base do
 
-  let(:object) { FuelSDK::Objects::Base.new }
+  let(:object) { MarketingCloudSDK::Objects::Base.new }
   subject{ object }
 
   describe '#properties' do
     it 'is empty by default' do
-      expect(object.properties).to be_empty
+      expect(object.properties).to be_nil
     end
 
-    it 'returns item in array when item is not an array' do
+    it 'returns object when assigned an object' do
       object.properties = {'name' => 'value'}
-      expect(object.properties).to eq([{'name' => 'value'}])
+      expect(object.properties).to eq({'name' => 'value'})
     end
 
     it 'returns array when assigned array' do
@@ -24,132 +24,183 @@ describe FuelSDK::Objects::Base do
 
 end
 
-describe FuelSDK::BounceEvent do
+describe MarketingCloudSDK::BounceEvent do
 
-  let(:object) { FuelSDK::BounceEvent.new }
+  let(:object) { MarketingCloudSDK::BounceEvent.new }
   subject{ object }
 
   it_behaves_like 'Soap Read Only Object'
-  its(:id){ should eq 'BounceEvent' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'BounceEvent' }
+  end
 end
 
-describe FuelSDK::ClickEvent do
+describe MarketingCloudSDK::ClickEvent do
 
-  let(:object) { FuelSDK::ClickEvent.new }
+  let(:object) { MarketingCloudSDK::ClickEvent.new }
   subject{ object }
 
   it_behaves_like 'Soap Read Only Object'
-  its(:id){ should eq 'ClickEvent' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'ClickEvent' }
+  end
 end
 
-describe FuelSDK::ContentArea do
+describe MarketingCloudSDK::ContentArea do
 
-  let(:object) { FuelSDK::ContentArea.new }
+  let(:object) { MarketingCloudSDK::ContentArea.new }
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'ContentArea' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'ContentArea' }
+  end
 end
 
-describe FuelSDK::DataFolder do
+describe MarketingCloudSDK::DataFolder do
 
-  let(:object) { FuelSDK::DataFolder.new }
+  let(:object) { MarketingCloudSDK::DataFolder.new }
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'DataFolder' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'DataFolder' }
+  end
 end
 
-describe FuelSDK::Folder do
+describe MarketingCloudSDK::Folder do
 
-  let(:object) { FuelSDK::Folder.new }
+  let(:object) { MarketingCloudSDK::Folder.new }
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'DataFolder' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'DataFolder' }
+  end
 end
 
-describe FuelSDK::Email do
+describe MarketingCloudSDK::Email do
 
-  let(:object) { FuelSDK::Email.new }
+  let(:object) { MarketingCloudSDK::Email.new }
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'Email' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'Email' }
+  end
 end
 
-describe FuelSDK::List do
+describe MarketingCloudSDK::List do
 
-  let(:object) { FuelSDK::List.new }
+  let(:object) { MarketingCloudSDK::List.new }
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'List' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'List' }
+  end
 end
 
-describe FuelSDK::List::Subscriber do
+describe MarketingCloudSDK::List::Subscriber do
 
-  let(:object) { FuelSDK::List::Subscriber.new }
+  let(:object) { MarketingCloudSDK::List::Subscriber.new }
   subject{ object }
 
   it_behaves_like 'Soap Read Only Object'
-  its(:id){ should eq 'ListSubscriber' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'ListSubscriber' }
+  end
 end
 
-describe FuelSDK::OpenEvent do
+describe MarketingCloudSDK::OpenEvent do
 
-  let(:object) { FuelSDK::OpenEvent.new }
+  let(:object) { MarketingCloudSDK::OpenEvent.new }
   subject{ object }
 
   it_behaves_like 'Soap Read Only Object'
-  its(:id){ should eq 'OpenEvent' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'OpenEvent' }
+  end
 end
 
-describe FuelSDK::SentEvent do
+describe MarketingCloudSDK::SentEvent do
 
-  let(:object) { FuelSDK::SentEvent.new }
+  let(:object) { MarketingCloudSDK::SentEvent.new }
   subject{ object }
 
   it_behaves_like 'Soap Read Only Object'
-  its(:id){ should eq 'SentEvent' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'SentEvent' }
+  end
 end
 
-describe FuelSDK::Subscriber do
+describe MarketingCloudSDK::Subscriber do
 
-  let(:object) { FuelSDK::Subscriber.new }
+  let(:object) { MarketingCloudSDK::Subscriber.new }
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'Subscriber' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'Subscriber' }
+  end
 end
 
-describe FuelSDK::DataExtension::Column do
+describe MarketingCloudSDK::DataExtension::Column do
 
-  let(:object) { FuelSDK::DataExtension::Column.new }
+  let(:object) { MarketingCloudSDK::DataExtension::Column.new }
   subject{ object }
 
   it_behaves_like 'Soap Read Only Object'
-  its(:id){ should eq 'DataExtensionField' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'DataExtensionField' }
+  end
 end
 
-describe FuelSDK::DataExtension do
-  let(:object) { FuelSDK::DataExtension.new }
+describe MarketingCloudSDK::DataExtension do
+  let(:object) { MarketingCloudSDK::DataExtension.new }
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'DataExtension' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'DataExtension' }
+  end
   it { should respond_to :columns= }
   it { should respond_to :fields }
   it { should respond_to :fields= }
 
   describe '#post' do
     subject {
-		object.stub_chain(:client,:soap_post) do |id, properties|
-			[id, properties]
-		end
-		object.stub_chain(:client,:package_name).and_return(nil)
-		object.stub_chain(:client,:package_folders).and_return(nil)
-
+      object.stub_chain(:client, :soap_post) do |id, properties|
+        [id, properties]
+      end
+      object.stub_chain(:client, :package_name).and_return(nil)
+      object.stub_chain(:client, :package_folders).and_return(nil)
       object
     }
 
@@ -163,16 +214,16 @@ describe FuelSDK::DataExtension do
 
     it 'fields must be empty if not nil' do
       subject.fields = []
-      subject.properties = [{'Name' => 'Some DE', 'fields' => [{'Name' => 'A field'}]}]
+      subject.properties = {'Name' => 'Some DE', 'fields' => [{'Name' => 'A field'}]}
       expect(subject.post).to eq(
         [
           'DataExtension',
-          [{
+          {
             'Name' => 'Some DE',
             'Fields' => {
               'Field' => [{'Name' => 'A field'}]
             }
-          }]
+          }
         ])
     end
 
@@ -182,17 +233,17 @@ describe FuelSDK::DataExtension do
       expect(subject.post).to eq(
         [
           'DataExtension',
-          [{
+          {
             'Name' => 'Some DE',
             'Fields' => {
               'Field' => [{'Name' => 'A field'}]
             }
-          }]
+          }
         ])
     end
 
     it 'DataExtension fields can be apart of the DataExtention properties' do
-      subject.properties = {'Name' => 'Some DE', 'Fields' => {'Field' => [{'Name' => 'A field'}]}}
+      subject.properties = [{'Name' => 'Some DE', 'Fields' => {'Field' => [{'Name' => 'A field'}]}}]
       expect(subject.post).to eq(
         [
           'DataExtension',
@@ -230,12 +281,12 @@ describe FuelSDK::DataExtension do
       expect(subject.post).to eq(
         [
           'DataExtension',
-          [{
+          {
             'Name' => 'Some DE',
             'Fields' => {
               'Field' => [{'Name' => 'A field'}]
             }
-          }]
+          }
         ])
     end
 
@@ -244,18 +295,18 @@ describe FuelSDK::DataExtension do
       expect(subject.post).to eq(
         [
           'DataExtension',
-          [{
+          {
             'Name' => 'Some DE',
             'Fields' => {
               'Field' => [{'Name' => 'A field'}]
             }
-          }]
+          }
         ])
     end
 
     it 'supports columns attribute for a single DataExtension definition' do
       subject.columns = [{'Name' => 'A field'}]
-      subject.properties = {'Name' => 'Some DE'}
+      subject.properties = [{'Name' => 'Some DE'}]
       expect(subject.post).to eq(
         [
           'DataExtension',
@@ -271,35 +322,35 @@ describe FuelSDK::DataExtension do
     describe 'fields are defined twice' do
       it 'when defined in properties and by fields' do
         subject.fields = [{'Name' => 'A field'}]
-        subject.properties = {'Name' => 'Some DE', 'Fields' => {'Field' => [{'Name' => 'A field'}]}}
+        subject.properties = [{'Name' => 'Some DE', 'Fields' => {'Field' => [{'Name' => 'A field'}]}}]
         expect{subject.post}.to raise_error 'Fields are defined in too many ways. Please only define once.'
       end
       it 'when defined in properties explicitly and with columns key' do
-        subject.properties = {'Name' => 'Some DE',
+        subject.properties =[{'Name' => 'Some DE',
           'columns' => [{'Name' => 'A fields'}],
           'Fields' => {'Field' => [{'Name' => 'A field'}]
-        }}
+        }}]
         expect{subject.post}.to raise_error 'Fields are defined in too many ways. Please only define once.'
       end
       it 'when defined in properties explicitly and with fields key' do
-        subject.properties = {'Name' => 'Some DE',
+        subject.properties = [{'Name' => 'Some DE',
           'fields' => [{'Name' => 'A fields'}],
           'Fields' => {'Field' => [{'Name' => 'A field'}]
-        }}
+        }}]
         expect{subject.post}.to raise_error 'Fields are defined in too many ways. Please only define once.'
       end
       it 'when defined in with fields and colums key' do
-        subject.properties = {'Name' => 'Some DE',
+        subject.properties = [{'Name' => 'Some DE',
           'fields' => [{'Name' => 'A fields'}],
           'columns' => [{'Name' => 'A field'}]
-        }
+        }]
         expect{subject.post}.to raise_error 'Fields are defined in too many ways. Please only define once.'
       end
       it 'when defined in with fields key and accessor' do
         subject.fields = [{'Name' => 'A field'}]
-        subject.properties = {'Name' => 'Some DE',
+        subject.properties = [{'Name' => 'Some DE',
           'fields' => [{'Name' => 'A fields'}]
-        }
+        }]
         expect{subject.post}.to raise_error 'Fields are defined in too many ways. Please only define once.'
       end
     end
@@ -320,23 +371,27 @@ describe FuelSDK::DataExtension do
       expect(subject.patch).to eq(
         [
           'DataExtension',
-          [{
+          {
             'Name' => 'Some DE',
             'Fields' => {
               'Field' => [{'Name' => 'A field'}]
             }
-          }]
+          }
         ])
     end
   end
 end
 
-describe FuelSDK::DataExtension::Row do
-  let(:object) { FuelSDK::DataExtension::Row.new }
+describe MarketingCloudSDK::DataExtension::Row do
+  let(:object) { MarketingCloudSDK::DataExtension::Row.new }
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'DataExtensionObject' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'DataExtensionObject' }
+  end
   it { should respond_to :name }
   it { should respond_to :name= }
   it { should respond_to :customer_key }
@@ -375,9 +430,9 @@ describe FuelSDK::DataExtension::Row do
     end
 
     it 'updates missing' do
-      rsp = mock(FuelSDK::SoapResponse)
-      rsp.stub(:results).and_return([{:name => 'Products', :customer_key => 'ProductsKey'}])
-      rsp.stub(:success?).and_return true
+      rsp = double(MarketingCloudSDK::SoapResponse)
+      allow(rsp).to receive(:results).and_return([{:name => 'Products', :customer_key => 'ProductsKey'}])
+      allow(rsp).to receive(:success?).and_return true
 
       subject.stub_chain(:client,:soap_get).and_return(rsp)
       subject.name = 'Not Nil'
@@ -401,7 +456,7 @@ describe FuelSDK::DataExtension::Row do
 
     it 'passes id including name to super get' do
       subject.name = 'Justin'
-      expect(subject.get).to eq(['DataExtensionObject[Justin]', [], nil])
+      expect(subject.get).to eq(['DataExtensionObject[Justin]', nil, nil])
     end
   end
 
@@ -444,9 +499,9 @@ describe FuelSDK::DataExtension::Row do
     it 'uses name to get customer key for inseration' do
       subject.name = 'Subscribers'
 
-      rsp = mock(FuelSDK::SoapResponse)
-      rsp.stub(:results).and_return([{:name => 'Products', :customer_key => 'ProductsKey'}])
-      rsp.stub(:success?).and_return true
+      rsp = double(MarketingCloudSDK::SoapResponse)
+      allow(rsp).to receive(:results).and_return([{:name => 'Products', :customer_key => 'ProductsKey'}])
+      allow(rsp).to receive(:success?).and_return true
 
       subject.stub_chain(:client, :soap_get).and_return(rsp)
       subject.properties = [{'Properties' => {
@@ -480,5 +535,9 @@ describe ET_Subscriber do
   subject{ object }
 
   it_behaves_like 'Soap Object'
-  its(:id){ should eq 'Subscriber' }
+
+  describe '#id' do
+    subject { super().id }
+    it { should eq 'Subscriber' }
+  end
 end

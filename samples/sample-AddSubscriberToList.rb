@@ -1,4 +1,4 @@
-require 'fuelsdk'
+require 'marketingcloudsdk'
 require_relative 'sample_helper'
 
 begin
@@ -53,4 +53,3 @@ rescue => e
 	p "Caught exception: #{e.message}"
 	p e.backtrace
 end
-

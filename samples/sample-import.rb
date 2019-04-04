@@ -1,15 +1,15 @@
-require 'fuelsdk'
+require 'marketingcloudsdk'
 require_relative 'sample_helper'
 
 begin
-    stubObj = FuelSDK::Client.new auth
-    
+    stubObj = MarketingCloudSDK::Client.new auth
+
     NewImportName = "RubySDKImport"
     SendableDataExtensionCustomerKey = "62476204-bfd3-de11-95ca-001e0bbae8cc"
     ListIDForImport = "1956035"
-    
+
     p '>>> Create Import to DataExtension'
-    postImport = ET_Import.new 
+    postImport = ET_Import.new
     postImport.authStub = stubObj
     postImport.props = {"Name"=>NewImportName}
     postImport.props["CustomerKey"] = NewImportName
@@ -28,7 +28,7 @@ begin
     p 'Message: ' + postResponse.message.to_s
     p 'Result Count: ' + postResponse.results.length.to_s
     p 'Results: ' + postResponse.results.inspect
-    
+
     p '>>> Delete Import'
     deleteImport = ET_Import.new()
     deleteImport.authStub = stubObj
@@ -36,12 +36,12 @@ begin
     deleteResponse = deleteImport.delete
     p 'Delete Status: ' + deleteResponse.status.to_s
     p 'Code: ' + deleteResponse.code.to_s
-    p 'Message: ' + deleteResponse.message.to_s    
+    p 'Message: ' + deleteResponse.message.to_s
     p 'Results Length: ' + deleteResponse.results.length.to_s
     p 'Results: ' + deleteResponse.results.to_s
-    
+
     p '>>> Create Import to List'
-    postImport = ET_Import.new 
+    postImport = ET_Import.new
     postImport.authStub = stubObj
     postImport.props = {"Name"=>NewImportName}
     postImport.props["CustomerKey"] = NewImportName
@@ -60,9 +60,9 @@ begin
     p 'Message: ' + postResponse.message.to_s
     p 'Result Count: ' + postResponse.results.length.to_s
     p 'Results: ' + postResponse.results.inspect
-    
+
     p '>>> Start Import to List'
-    startImport = ET_Import.new 
+    startImport = ET_Import.new
     startImport.authStub = stubObj
     startImport.props = {"CustomerKey"=>NewImportName}
     postResponse = startImport.start
@@ -71,7 +71,7 @@ begin
     p 'Message: ' + postResponse.message.to_s
     p 'Result Count: ' + postResponse.results.length.to_s
     p 'Results: ' + postResponse.results.inspect
-    
+
     importStatus = ""
     while postResponse.status && importStatus != "Error" && importStatus != "Completed" do
         p '>>> Checking status in loop'
@@ -85,7 +85,7 @@ begin
         p 'Results: ' + statusResponse.results.inspect
         importStatus = statusResponse.results[0][:import_status]
     end
-    
+
     p '>>> Delete Import'
     deleteImport = ET_Import.new()
     deleteImport.authStub = stubObj
@@ -93,12 +93,11 @@ begin
     deleteResponse = deleteImport.delete
     p 'Delete Status: ' + deleteResponse.status.to_s
     p 'Code: ' + deleteResponse.code.to_s
-    p 'Message: ' + deleteResponse.message.to_s    
+    p 'Message: ' + deleteResponse.message.to_s
     p 'Results Length: ' + deleteResponse.results.length.to_s
     p 'Results: ' + deleteResponse.results.to_s
-    
+
 rescue => e
     p "Caught exception: #{e.message}"
     p e.backtrace
 end
-

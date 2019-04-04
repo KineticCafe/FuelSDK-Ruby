@@ -1,8 +1,8 @@
-require 'fuelsdk'
+require 'marketingcloudsdk'
 require_relative 'sample_helper'
 
 begin
-    stubObj = FuelSDK::Client.new auth
+    stubObj = MarketingCloudSDK::Client.new auth
 
     NameOfAttribute = 'RubySDKTesting'
 
@@ -15,10 +15,10 @@ begin
     p 'Message: ' + getResponse.message.to_s
     p 'Result Count: ' + getResponse.results.length.to_s
     #p 'Results: ' + getResponse.results.inspect
-    raise 'Failure getting Profile Attribute' unless getResponse.success?    
-    
+    raise 'Failure getting Profile Attribute' unless getResponse.success?
+
     p '>>> Create ProfileAttribute'
-    postProfileAttribute = ET_ProfileAttribute.new 
+    postProfileAttribute = ET_ProfileAttribute.new
     postProfileAttribute.authStub = stubObj
     postProfileAttribute.props = {"Name" => NameOfAttribute, "PropertyType"=>"string", "Description"=>"New Attribute from the SDK", "IsRequired"=>"false", "IsViewable"=>"false", "IsEditable"=>"true", "IsSendTime"=>"false"}
     postResponse = postProfileAttribute.post
@@ -29,7 +29,7 @@ begin
     p 'Results: ' + postResponse.results.inspect
 
     p '>>> Update ProfileAttribute'
-    patchProfileAttribute = ET_ProfileAttribute.new 
+    patchProfileAttribute = ET_ProfileAttribute.new
     patchProfileAttribute.authStub = stubObj
     patchProfileAttribute.props = {"Name" => NameOfAttribute, "PropertyType"=>"string"}
     patchResponse = patchProfileAttribute.patch
@@ -38,9 +38,9 @@ begin
     p 'Message: ' + patchResponse.message.to_s
     p 'Result Count: ' + patchResponse.results.length.to_s
     p 'Results: ' + patchResponse.results.inspect
-        
+
     p '>>> Delete ProfileAttribute'
-    deleteProfileAttribute = ET_ProfileAttribute.new 
+    deleteProfileAttribute = ET_ProfileAttribute.new
     deleteProfileAttribute.authStub = stubObj
     deleteProfileAttribute.props = {"Name" => NameOfAttribute}
     deleteResponse = deleteProfileAttribute.delete
@@ -54,4 +54,3 @@ rescue => e
     p "Caught exception: #{e.message}"
     p e.backtrace
 end
-

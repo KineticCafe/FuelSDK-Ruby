@@ -1,38 +1,43 @@
 require 'spec_helper'
 
-describe FuelSDK::Targeting do
+describe MarketingCloudSDK::Targeting do
 
-  subject { Class.new.new.extend(FuelSDK::Targeting) }
+  subject { Class.new.new.extend(MarketingCloudSDK::Targeting) }
 
   it { should respond_to(:endpoint) }
   it { should_not respond_to(:endpoint=) }
-  it { should respond_to(:determine_stack) }
+  it { should_not respond_to(:get_soap_endpoint) }
   it { should respond_to(:get) }
   it { should respond_to(:post) }
   it { should respond_to(:patch) }
   it { should respond_to(:delete) }
   it { should respond_to(:access_token) }
 
-  describe '#determine_stack' do
-    let(:client) { c = Class.new.new.extend(FuelSDK::Targeting)
-      c.stub(:access_token).and_return('open_sesame')
-      c.stub(:get)
-        .with('https://www.exacttargetapis.com/platform/v1/endpoints/soap',{'params'=>{'access_token'=>'open_sesame'}})
+  describe '#get_soap_endpoint' do
+    let(:client) { c = Class.new.new.extend(MarketingCloudSDK::Targeting)
+      allow(c).to receive(:base_api_url).and_return('https://www.exacttargetapis.com')
+      allow(c).to receive(:access_token).and_return('open_sesame')
+      allow(c).to receive(:get_soap_endpoint_from_file).and_return(nil)
+      allow(c).to receive(:set_soap_endpoint_to_file).and_return(nil)
+      allow(c).to receive(:get)
+        .with('https://www.exacttargetapis.com/platform/v1/endpoints/soap',{'access_token'=>'open_sesame'})
         .and_return({'url' => 'S#.authentication.target'})
       c
     }
     it 'sets @endpoint' do
-      expect(client.send(:determine_stack)).to eq 'S#.authentication.target'
+      client.send(:get_soap_endpoint)
+      expect(client.endpoint).to eq 'S#.authentication.target'
     end
   end
 
   describe '#endpoint' do
-    let(:client) { c = Class.new.new.extend(FuelSDK::Targeting)
-      c.stub(:get).and_return({'url' => 'S#.authentication.target'})
+    let(:client) { c = Class.new.new.extend(MarketingCloudSDK::Targeting)
+      allow(c).to receive(:base_api_url).and_return('bogus url')
+      allow(c).to receive(:get).and_return({'url' => 'S#.authentication.target'})
       c
     }
 
-    it 'calls determine_stack to find target' do
+    it 'calls get_soap_endpoint to find target' do
       expect(client.endpoint).to eq 'S#.authentication.target'
     end
   end

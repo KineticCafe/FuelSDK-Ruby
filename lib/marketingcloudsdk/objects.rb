@@ -34,7 +34,7 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWIS
 USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 =end
 
-module FuelSDK
+module MarketingCloudSDK
   module Objects
     module Soap
       module Read
@@ -505,7 +505,7 @@ module FuelSDK
             unless explicit_properties(o)
               o.each do |k, v|
                 next if k == 'CustomerKey'
-                formatted.concat FuelSDK.format_name_value_pairs k => v
+                formatted.concat MarketingCloudSDK.format_name_value_pairs k => v
                 o.delete k
               end
               o['Keys'] = {'Key' => formatted }
@@ -515,7 +515,7 @@ module FuelSDK
           formatted = []
           d.each do |k, v|
             next if k == 'CustomerKey'
-            formatted.concat FuelSDK.format_name_value_pairs k => v
+            formatted.concat MarketingCloudSDK.format_name_value_pairs k => v
             d.delete k
           end
           d['CustomerKey'] = customer_key
@@ -537,7 +537,7 @@ module FuelSDK
             unless explicit_properties(o)
               o.each do |k, v|
                 next if k == 'CustomerKey'
-                formatted.concat FuelSDK.format_name_value_pairs k => v
+                formatted.concat MarketingCloudSDK.format_name_value_pairs k => v
                 o.delete k
               end
               o['Properties'] = {'Property' => formatted }
@@ -546,7 +546,7 @@ module FuelSDK
         else
           formatted = []
           d.each do |k, v|
-            formatted.concat FuelSDK.format_name_value_pairs k => v
+            formatted.concat MarketingCloudSDK.format_name_value_pairs k => v
             d.delete k
           end
           d['CustomerKey'] = customer_key
@@ -579,8 +579,6 @@ module FuelSDK
             self.name = rsp.results.first[:name]
             self.customer_key = rsp.results.first[:customer_key]
           else
-            puts "Here is the response:  ", rsp
-            pry.binding
             raise 'Unable to process DataExtension::Row'
           end
         end
@@ -642,7 +640,7 @@ module FuelSDK
     end
 
     def id
-      "https://www.exacttargetapis.com/hub/v1/campaigns/%{id}"
+			self.client.base_api_url + '/hub/v1/campaigns/%{id}'
     end
 
     class Asset < Objects::Base
@@ -656,7 +654,7 @@ module FuelSDK
       end
 
       def id
-        'https://www.exacttargetapis.com/hub/v1/campaigns/%{id}/assets/%{assetId}'
+				self.client.base_api_url + '/hub/v1/campaigns/%{id}/assets/%{assetId}'
       end
     end
   end
